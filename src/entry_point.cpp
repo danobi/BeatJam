@@ -10,7 +10,7 @@ You could start from example.cpp and example.h it has main functions being calle
 
 #include "example.h"
 
-#define WINDOW_HEIGHT 600
+#define WINDOW_HEIGHT 630
 #define WINDOW_WIDTH (WINDOW_HEIGHT/2)
 
 using namespace oxygine;

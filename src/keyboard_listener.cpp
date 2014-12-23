@@ -6,8 +6,9 @@ KeyboardListener::KeyboardListener(PianoBar * pb)
 	// we will check keyboard state only when a key is pressed, to increase performance
 	getStage()->addEventListener(KeyEvent::KEY_DOWN, CLOSURE(this,&KeyboardListener::keyPressDownHandler)); // down press handler
 
-	// initialize currentNote
-	currentNote = '\0';
+	// initialize note private data
+	_currentNote = '\0';
+	_prevNote = '\0';
 
 	// save the pianobar object
 	_pianobar = pb;
@@ -20,70 +21,42 @@ void KeyboardListener::keyPressDownHandler(Event * ev)
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	if (state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_F]) {
-		if (currentNote != 'C') {
-			char oldNote = currentNote;
-			currentNote = 'C';
-			updateKeyboard(oldNote,currentNote);
-			log::messageln("chorded C");
-		}
+		updateKeyboard('C');
+		log::messageln("chorded C");
 	}
 	else if (!state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && state[SDL_SCANCODE_F]) {
-		if (currentNote != 'D') {
-			char oldNote = currentNote;
-			currentNote = 'D';
-			updateKeyboard(oldNote,currentNote);
-			log::messageln("chorded D");
-		}
+		updateKeyboard('D');
+		log::messageln("chorded D");
 	}
 	else if (!state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && state[SDL_SCANCODE_S] && state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_F]) {
-		if (currentNote != 'E') {
-			char oldNote = currentNote;
-			currentNote = 'E';
-			updateKeyboard(oldNote,currentNote);
-			log::messageln("chorded E");
-		}
+		updateKeyboard('E');
+		log::messageln("chorded E");
 	}
 	else if (!state[SDL_SCANCODE_Q] && state[SDL_SCANCODE_W] && state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_F]) {
-		if (currentNote != 'F') {
-			char oldNote = currentNote;
-			currentNote = 'F';
-			updateKeyboard(oldNote,currentNote);
-			log::messageln("chorded F");
-		}
+		updateKeyboard('F');
+		log::messageln("chorded F");
 	}
 	else if (!state[SDL_SCANCODE_Q] && state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && state[SDL_SCANCODE_F]) {
-		if (currentNote != 'G') {
-			char oldNote = currentNote;
-			currentNote = 'G';
-			updateKeyboard(oldNote,currentNote);
-			log::messageln("chorded G");
-		}
+		updateKeyboard('G');
+		log::messageln("chorded G");
 	}
 	else if (!state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && state[SDL_SCANCODE_S] && state[SDL_SCANCODE_D] && state[SDL_SCANCODE_F]) {
-		if (currentNote != 'A') {
-			char oldNote = currentNote;
-			currentNote = 'A';
-			updateKeyboard(oldNote,currentNote);
-			log::messageln("chorded A");
-		}
+		updateKeyboard('A');
+		log::messageln("chorded A");
 	}
 	else if (state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && state[SDL_SCANCODE_F]) {
-		if (currentNote != 'B') {
-			char oldNote = currentNote;
-			currentNote = 'B';
-			updateKeyboard(oldNote,currentNote);
-			log::messageln("chorded B");
-		}
+		updateKeyboard('B');
+		log::messageln("chorded B");
 	}
 }
 
-void KeyboardListener::updateKeyboard(char okey, char nkey)
+void KeyboardListener::updateKeyboard(char nkey)
 {
-	_pianobar->updateKeys(okey,nkey);
+	_pianobar->keyboardUpdateKeys(nkey);
 }

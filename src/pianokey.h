@@ -30,6 +30,11 @@ class PianoKey : public ColorRectSprite
 		void keyUnPress();
 
 		/*
+		 * returns if the key is currently pressed or not
+		 */
+		bool isPressed();
+
+		/*
 		 * sets the name of the PianoKey
 		 */
 		void setName(std::string n);

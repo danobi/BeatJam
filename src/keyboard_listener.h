@@ -23,7 +23,7 @@ class KeyboardListener : public ColorRectSprite
 		 * this function will make the appropirate calls to 
 		 * press down a key and un-press the old key
 		 */
-		void updateKeyboard(char okey, char nkey);
+		void updateKeyboard(char nkey);
 
 		/*
 		 * this helper function is called whenever a key is 
@@ -34,7 +34,8 @@ class KeyboardListener : public ColorRectSprite
 		void keyPressDownHandler(Event * ev);
 
 		// private data
-		char currentNote;
+		char _currentNote;
+		char _prevNote;
 		PianoBar * _pianobar;
 };
 

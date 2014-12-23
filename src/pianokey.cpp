@@ -73,6 +73,11 @@ void PianoKey::tweenDone(Event *)
 	log::messageln("Finished tween: %s",this->_name.c_str());
 }
 
+bool PianoKey::isPressed()
+{
+	return _isPressed;
+}
+
 void PianoKey::setName(std::string n)
 {
 	this->_name = n;

@@ -2,6 +2,10 @@
 
 PianoBar::PianoBar()
 {
+	// init private variables
+	_keyboard_prev_pressed = NULL;
+	_keyboard_curr_pressed = NULL;
+
 	// calculate dimesions for piano keys
 	int screen_length = getStage()->getHeight();
 	int screen_width = getStage()->getWidth();
@@ -18,100 +22,106 @@ PianoBar::PianoBar()
 	for (int i = 0; i < NUM_PIANO_KEYS; ++i)
 	{
 		// init PianoKey
-		piano_keys[i] = new PianoKey();
+		_piano_keys[i] = new PianoKey();
 
 		// set position
-		piano_keys[i]->setPosition(i * key_width,0);
+		_piano_keys[i]->setPosition(i * key_width,0);
 
 		// set size
-		piano_keys[i]->setSize(key_width,key_length);
+		_piano_keys[i]->setSize(key_width,key_length);
 
 		// set color
 		if (i % 2 == 0)
-			piano_keys[i]->setColor(Color::White);
+			_piano_keys[i]->setColor(Color::White);
 		else
-			piano_keys[i]->setColor(Color::Salmon);
+			_piano_keys[i]->setColor(Color::Salmon);
 
 		// set name
 		switch (i)
 		{
 			case 0: 
-				piano_keys[i]->setName("C");
+				_piano_keys[i]->setName("C");
 				break;
 			case 1: 
-				piano_keys[i]->setName("D");
+				_piano_keys[i]->setName("D");
 				break;
 			case 2: 
-				piano_keys[i]->setName("E");
+				_piano_keys[i]->setName("E");
 				break;
 			case 3: 
-				piano_keys[i]->setName("F");
+				_piano_keys[i]->setName("F");
 				break;
 			case 4: 
-				piano_keys[i]->setName("G");
+				_piano_keys[i]->setName("G");
 				break;
 			case 5: 
-				piano_keys[i]->setName("A");
+				_piano_keys[i]->setName("A");
 				break;
 			case 6: 
-				piano_keys[i]->setName("B");
+				_piano_keys[i]->setName("B");
 				break;
 		}
 
 		// add child
-		addChild(piano_keys[i]);
+		addChild(_piano_keys[i]);
 	}
 }
 
-void PianoBar::updateKeys(char okey, char nkey)
+void PianoBar::keyboardUpdateKeys(char nkey)
 {
+	// TODO: possibly add a mutex here since animations take longer than multiple game loops
+	// set the previous keyboard key pressed
+	 _keyboard_prev_pressed = _keyboard_curr_pressed; 
+
+	// unpress the previous key
+	if (_keyboard_prev_pressed)  // make sure not null
+		_keyboard_prev_pressed->keyUnPress();
+
+	// update and press the _keyboard_curr_pressed
 	switch (nkey)
 	{
 		case 'C':
-			piano_keys[0]->keyPress();
+			if (!_piano_keys[0]->isPressed()) {
+				_piano_keys[0]->keyPress();
+				_keyboard_curr_pressed = _piano_keys[0];
+			}
 			break;
 		case 'D':
-			piano_keys[1]->keyPress();
+			if (!_piano_keys[1]->isPressed()) {
+				_piano_keys[1]->keyPress();
+				_keyboard_curr_pressed = _piano_keys[1];
+			}
 			break;
 		case 'E':
-			piano_keys[2]->keyPress();
+			if (!_piano_keys[2]->isPressed()) {
+				_piano_keys[2]->keyPress();
+				_keyboard_curr_pressed = _piano_keys[2];
+			}
 			break;
 		case 'F':
-			piano_keys[3]->keyPress();
+			if (!_piano_keys[3]->isPressed()) {
+				_piano_keys[3]->keyPress();
+				_keyboard_curr_pressed = _piano_keys[3];
+			}
 			break;
 		case 'G':
-			piano_keys[4]->keyPress();
+			if (!_piano_keys[4]->isPressed()) {
+				_piano_keys[4]->keyPress();
+				_keyboard_curr_pressed = _piano_keys[4];
+			}
 			break;
 		case 'A':
-			piano_keys[5]->keyPress();
+			if (!_piano_keys[5]->isPressed()) {
+				_piano_keys[5]->keyPress();
+				_keyboard_curr_pressed = _piano_keys[5];
+			}
 			break;
 		case 'B':
-			piano_keys[6]->keyPress();
+			if (!_piano_keys[6]->isPressed()) {
+				_piano_keys[6]->keyPress();
+				_keyboard_curr_pressed = _piano_keys[6];
+			}
 			break;
 	}
 
-	switch (okey)
-	{
-		case 'C':
-			piano_keys[0]->keyUnPress();
-			break;
-		case 'D':
-			piano_keys[1]->keyUnPress();
-			break;
-		case 'E':
-			piano_keys[2]->keyUnPress();
-			break;
-		case 'F':
-			piano_keys[3]->keyUnPress();
-			break;
-		case 'G':
-			piano_keys[4]->keyUnPress();
-			break;
-		case 'A':
-			piano_keys[5]->keyUnPress();
-			break;
-		case 'B':
-			piano_keys[6]->keyUnPress();
-			break;
-	}
 }

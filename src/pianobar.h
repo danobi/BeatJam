@@ -22,7 +22,7 @@ class PianoBar : public ColorRectSprite
 		 * while also unpressing and "un"-animating the old key
 		 * Note: this is for keyboard input only
 		 */
-		void updateKeys(char okey, char nkey); 
+		void keyboardUpdateKeys(char nkey); 
 	private:
 		/*
 		PianoKey * key_c   => piano_keys[0]
@@ -33,7 +33,9 @@ class PianoBar : public ColorRectSprite
 		PianoKey * key_a;
 		PianoKey * key_b;
 		*/
-		PianoKey * piano_keys[NUM_PIANO_KEYS];
+		PianoKey * _piano_keys[NUM_PIANO_KEYS];
+		PianoKey * _keyboard_prev_pressed;
+		PianoKey * _keyboard_curr_pressed;
 };
 
 #endif
