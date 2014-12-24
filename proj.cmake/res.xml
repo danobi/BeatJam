@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <resources>
+	<set path = "images" />
+	<atlas>
+		<image file="circle.png"/>	
+	</atlas>
 	<set path = "fonts" />
 	<font file="main.fnt" />	
 </resources>

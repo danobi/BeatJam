@@ -16,7 +16,7 @@ PianoBar::PianoBar()
 	setSize(screen_width,key_length); 
 	setX(0);
 	setY(0);
-	setColor(Color::Black);
+	setColor(Color::DarkSlateGray);
 
 	// put the keys in the right spots
 	for (int i = 0; i < NUM_PIANO_KEYS; ++i)

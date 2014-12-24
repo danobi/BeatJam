@@ -5,6 +5,7 @@
 #include "pianokey.h"
 #include "pianobar.h"
 #include "keyboard_listener.h"
+#include "beatstage.h"
 
 using namespace oxygine;
 
@@ -12,5 +13,6 @@ void example_preinit();
 void example_init();
 void example_destroy();
 void example_update();
+
 
 #endif
