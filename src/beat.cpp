@@ -14,7 +14,7 @@ Beat::Beat()
 
 	// defaults
 	_radius = 0;
-	_timeforfall = 0;   // perhaps this is a bad idea
+	_timeforfall = 0;   // perhaps setting to 0 is a bad idea
 	_isFalling = false;
 	_note = '\0';
 }
@@ -24,7 +24,7 @@ Beat::Beat(int radius) : Beat()
 {
 	_radius = radius;
 	
-	// make the beat the correct size (radius = width of pianokey)
+	// make the beat the correct size 
 	float scale = _radius / this->getWidth();
 	this->setScale(scale,scale);
 }
@@ -67,4 +67,14 @@ void Beat::setNote(char note)
 char Beat::getNote()
 {
 	return _note;
+}
+
+void Beat::setRadius(int rad)
+{
+	_radius = rad;
+}
+
+int Beat::getRadius()
+{
+	return _radius;
 }

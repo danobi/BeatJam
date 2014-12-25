@@ -7,6 +7,7 @@
 #include "beatjam_constants.h"
 #include "pianobar.h"
 #include "beat.h"
+#include "beatborder.h"
 
 using namespace oxygine;
 
@@ -35,13 +36,20 @@ class BeatStage : public ColorRectSprite
 		 */
 		bool _consumeBeat(Beat * beat);
 
+		/*
+		 * this function will add NUM_PIANO_KEYS number of beat borders at the right locations
+		 */
+		void _addBeatBorders();
+
 		// private data
 		std::vector<Beat*> _beats;  		// array of currently VALID beats in the beatstage
+		std::vector<BeatBorder*> _beatborders;
 		PianoBar * _pb;
 		int _timeSinceLastBeat; 			// time in ms since last beat was added
 											// NOTE: subject to change when music is added
 	 	int _beatInterval; 					// how often a beat should be added in seconds
 											// NOTE: subject to change when music is added
+		float _beatborder_ypos; 			// to help determine where consume zone is
 };
 
 #endif

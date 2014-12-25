@@ -30,7 +30,7 @@ class PianoBar : public ColorRectSprite
 		
 	private:
 		/*
-		PianoKey * key_c   => piano_keys[0]
+		PianoKey * key_c;  => piano_keys[0]
 		PianoKey * key_d;  => piano_keys[1]
 		PianoKey * key_e;  => etc
 		PianoKey * key_f;

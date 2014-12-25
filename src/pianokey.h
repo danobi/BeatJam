@@ -35,39 +35,38 @@ class PianoKey : public ColorRectSprite
 		/*
 		 * sets the name of the PianoKey
 		 */
-		void setName(std::string n);
+		void setNote(char n);
 
 		/*
 		 * gets the name of the PianoKey
 		 */
-		const char * getName();
+		char getNote();
 	private:
 		/*
 		 * private function to animate a press down
 		 */
-		void animatePress();
+		void _animatePress();
 
 		/*
 		 * private function to animate a un-press
 		 */
-		void animateUnPress();
+		void _animateUnPress();
 
 		/* 
 		 * handles the piano key being pressed
 		 * mouse clicked keys have a different mechanic than keyboard activated
 		 */
-		void clickHandler(Event *);
+		void _clickHandler(Event *);
 
 		/*
 		 * this gets called when the tween animation is done
 		 * this includes pressing and un-pressing
 		 */
-		void tweenDone(Event *);
+		void _tweenDone(Event *);
 
 		// private data
 		Tween::EASE _ease;
-		int _tween_dur;
-		std::string _name;
+		char _note;
 		bool _isPressed;
 };
 

@@ -13,10 +13,11 @@ BeatStage::BeatStage(PianoBar * pb)
 	setY(PIANOKEY_HEIGHT);
 	setColor(Color::DarkSlateGray);
 
+	// set up the beat borders (where the beat gets consumed)
+	_addBeatBorders();
+
 	// seed random generator
 	srand(time(NULL));
-
-	// a test beat
 }
 
 void BeatStage::_addBeat(Beat * beat)
@@ -31,25 +32,25 @@ void BeatStage::_addBeat(Beat * beat)
 	switch (random)
 	{
 		case 0: 
-			beat->setNote('C');
+			beat->setNote(KEY_0);
 			break;
 		case 1: 
-			beat->setNote('D');
+			beat->setNote(KEY_1);
 			break;
 		case 2: 
-			beat->setNote('E');
+			beat->setNote(KEY_2);
 			break;
 		case 3: 
-			beat->setNote('F');
+			beat->setNote(KEY_3);
 			break;
 		case 4: 
-			beat->setNote('G');
+			beat->setNote(KEY_4);
 			break;
 		case 5: 
-			beat->setNote('A');
+			beat->setNote(KEY_5);
 			break;
 		case 6: 
-			beat->setNote('B');
+			beat->setNote(KEY_6);
 			break;
 	}
 
@@ -59,10 +60,10 @@ void BeatStage::_addBeat(Beat * beat)
 
 void BeatStage::update(const UpdateState & us)
 {
-	// first we must determine if any beats can be consumed (ie out of bounds or correctly chorded)
+	// we must determine if any beats can be consumed (ie out of bounds or correctly chorded)
 	for (int i = 0; i < _beats.size(); ++i)
 	{
-		if ((float)_beats[i]->getY() <= 0) 	// beat is in the consume zone; it's <= 0 b/c of the beatstage area
+		if ((float)_beats[i]->getY() <= _beatborder_ypos) 	// beat is in the consume zone
 		{
 			// TODO: change _consumeBeat to take in a vector, so we can have multiple beats at the same time
 			if(_consumeBeat(_beats[i]))
@@ -82,11 +83,10 @@ void BeatStage::update(const UpdateState & us)
 		}
 	}
 
-	// now let's see if we want to add a beat (based on time interval)
-	// NOTE: subject to change when music gets added
+	// now let's see if we want to add a beat (based on time interval) NOTE: subject to change when music gets added
 	if (_timeSinceLastBeat >= 1000*_beatInterval)
 	{
-		_addBeat(new Beat(PIANOKEY_WIDTH-BEAT_RADIUS_OFFSET));
+		_addBeat(new Beat(BEAT_RADIUS));
 		_timeSinceLastBeat = 0;
 	}
 	else
@@ -94,8 +94,22 @@ void BeatStage::update(const UpdateState & us)
 	
 	// update children -> since we overrode update, we must manually update children
 	for (int i = 0; i < _beats.size(); ++i)
-	{
 		_beats[i]->update(us);
+	for (int i = 0; i < _beatborders.size(); ++i)
+	{
+		// see if we need to highlight or unhighlight border
+		std::vector<PianoKey*> pressedkeys = _pb->getPressedKeys();
+		bool foundkey = false;
+		for (int j = 0; j < pressedkeys.size(); ++j)
+			if (pressedkeys[j]->getNote() == _beatborders[i]->getNote())
+				foundkey = true;
+		if (foundkey)
+			_beatborders[i]->showBorder();
+		else
+			_beatborders[i]->hideBorder();
+
+		// do the update now
+		_beatborders[i]->update(us);
 	}
 }
 
@@ -104,7 +118,55 @@ bool BeatStage::_consumeBeat(Beat * beat)
 	std::vector<PianoKey*> pressedKeys = _pb->getPressedKeys();
 	
 	// following code subject to change (when _consumeBeat accepts a vector of beats)
-	if (pressedKeys.size() == 1 && *(pressedKeys[0]->getName()) == beat->getNote())
+	if (pressedKeys.size() == 1 && pressedKeys[0]->getNote() == beat->getNote())
 		return true;
 	return false;
+}
+
+void BeatStage::_addBeatBorders()
+{
+	BeatBorder temp(1.0f);  	// this temp beat border has scale 1.0
+	float scale = (float)BEAT_RADIUS / temp.getWidth() + BEATBORDER_SCALE_OFFSET;
+
+	for (int i = 0; i < NUM_PIANO_KEYS; ++i)
+	{
+		BeatBorder * bb = new BeatBorder(scale);
+
+		// do position calculation
+		float xpos = i * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
+		float ypos = BEATBORDER_Y_OFFSET + scale * (float)bb->getHeight() / 2;
+		_beatborder_ypos = ypos;
+		bb->setPosition(xpos,ypos);
+
+		// hide it to begin
+		bb->hideBorder();
+
+		// set notes
+		switch (i)
+		{
+			case 0: 
+				bb->setNote(KEY_0);
+				break;
+			case 1: 
+				bb->setNote(KEY_1);
+				break;
+			case 2: 
+				bb->setNote(KEY_2);
+				break;
+			case 3: 
+				bb->setNote(KEY_3);
+				break;
+			case 4: 
+				bb->setNote(KEY_4);
+				break;
+			case 5: 
+				bb->setNote(KEY_5);
+				break;
+			case 6: 
+				bb->setNote(KEY_6);
+				break;
+		}
+		_beatborders.push_back(bb);
+		addChild(bb);
+	}
 }

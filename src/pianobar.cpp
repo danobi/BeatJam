@@ -37,25 +37,25 @@ PianoBar::PianoBar()
 		switch (i)
 		{
 			case 0: 
-				_piano_keys[i]->setName("C");
+				_piano_keys[i]->setNote(KEY_0);
 				break;
 			case 1: 
-				_piano_keys[i]->setName("D");
+				_piano_keys[i]->setNote(KEY_1);
 				break;
 			case 2: 
-				_piano_keys[i]->setName("E");
+				_piano_keys[i]->setNote(KEY_2);
 				break;
 			case 3: 
-				_piano_keys[i]->setName("F");
+				_piano_keys[i]->setNote(KEY_3);
 				break;
 			case 4: 
-				_piano_keys[i]->setName("G");
+				_piano_keys[i]->setNote(KEY_4);
 				break;
 			case 5: 
-				_piano_keys[i]->setName("A");
+				_piano_keys[i]->setNote(KEY_5);
 				break;
 			case 6: 
-				_piano_keys[i]->setName("B");
+				_piano_keys[i]->setNote(KEY_6);
 				break;
 		}
 
@@ -77,43 +77,43 @@ void PianoBar::keyboardUpdateKeys(char nkey)
 	// update and press the _keyboard_curr_pressed
 	switch (nkey)
 	{
-		case 'C':
+		case KEY_0:
 			if (!_piano_keys[0]->isPressed()) {
 				_piano_keys[0]->keyPress();
 				_keyboard_curr_pressed = _piano_keys[0];
 			}
 			break;
-		case 'D':
+		case KEY_1:
 			if (!_piano_keys[1]->isPressed()) {
 				_piano_keys[1]->keyPress();
 				_keyboard_curr_pressed = _piano_keys[1];
 			}
 			break;
-		case 'E':
+		case KEY_2:
 			if (!_piano_keys[2]->isPressed()) {
 				_piano_keys[2]->keyPress();
 				_keyboard_curr_pressed = _piano_keys[2];
 			}
 			break;
-		case 'F':
+		case KEY_3:
 			if (!_piano_keys[3]->isPressed()) {
 				_piano_keys[3]->keyPress();
 				_keyboard_curr_pressed = _piano_keys[3];
 			}
 			break;
-		case 'G':
+		case KEY_4:
 			if (!_piano_keys[4]->isPressed()) {
 				_piano_keys[4]->keyPress();
 				_keyboard_curr_pressed = _piano_keys[4];
 			}
 			break;
-		case 'A':
+		case KEY_5:
 			if (!_piano_keys[5]->isPressed()) {
 				_piano_keys[5]->keyPress();
 				_keyboard_curr_pressed = _piano_keys[5];
 			}
 			break;
-		case 'B':
+		case KEY_6:
 			if (!_piano_keys[6]->isPressed()) {
 				_piano_keys[6]->keyPress();
 				_keyboard_curr_pressed = _piano_keys[6];

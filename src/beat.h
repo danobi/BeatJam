@@ -31,6 +31,12 @@ class Beat : public Sprite
 		void setNote(char note);
 		char getNote();
 
+		/* 
+		 * setters/getters for radius
+		 */
+		void setRadius(int rad);
+		int getRadius();
+
 
 	private:
 		/*

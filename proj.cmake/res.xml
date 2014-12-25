@@ -3,6 +3,7 @@
 	<set path = "images" />
 	<atlas>
 		<image file="circle.png"/>	
+		<image file="beat_border.png"/>
 	</atlas>
 	<set path = "fonts" />
 	<font file="main.fnt" />	

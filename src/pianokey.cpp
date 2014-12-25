@@ -4,15 +4,12 @@ PianoKey::PianoKey()
 {
 	// set tween ease
 	_ease = Tween::ease_outInBounce;
-
-	// set tween duration
-	_tween_dur = 200;
-
+	
 	// potential for mobile users pushing the keyboard
-	this->addEventListener(TouchEvent::CLICK, CLOSURE(this,&PianoKey::clickHandler));
+	this->addEventListener(TouchEvent::CLICK, CLOSURE(this,&PianoKey::_clickHandler));
 
-	// init name to nothing
-	_name = "";
+	// init note to nothing
+	_note = '\0';
 
 	_isPressed = false;
 }
@@ -22,10 +19,10 @@ void PianoKey::keyPress()
 	if (!_isPressed) 	
 	{
 		_isPressed = !_isPressed;
-		animatePress();
+		_animatePress();
 	}
 	else
-		log::messageln("Key %s: already is pressed",getName());
+		log::messageln("Key %c: already is pressed",getNote());
 }
 
 void PianoKey::keyUnPress()
@@ -34,40 +31,40 @@ void PianoKey::keyUnPress()
 	if (_isPressed) 	
 	{
 		_isPressed = !_isPressed;
-		animateUnPress();
+		_animateUnPress();
 	}
 	else
-		log::messageln("Key %s: already is un-pressed",getName());
+		log::messageln("Key %c: already is un-pressed",getNote());
 }
 
-void PianoKey::animatePress()
+void PianoKey::_animatePress()
 {
 	// make the new key shrink a little 
-	spTween tween = createTween(Actor::TweenScale(KEY_ORIGINAL_SIZE_FACTOR,KEY_SHRINK_FACTOR),_tween_dur,1,false);
+	spTween tween = createTween(Actor::TweenScale(KEY_ORIGINAL_SIZE_FACTOR,KEY_SHRINK_FACTOR),TWEEN_DURATION,1,false);
 	tween->setEase(_ease);
 	this->addTween(tween);
-	tween->addEventListener(TweenEvent::DONE,CLOSURE(this,&PianoKey::tweenDone));
+	tween->addEventListener(TweenEvent::DONE,CLOSURE(this,&PianoKey::_tweenDone));
 }
 
-void PianoKey::animateUnPress()
+void PianoKey::_animateUnPress()
 {
 	// make the old tween return to original size
-	spTween tween = createTween(Actor::TweenScale(KEY_ORIGINAL_SIZE_FACTOR,KEY_ORIGINAL_SIZE_FACTOR),_tween_dur,1,false);
+	spTween tween = createTween(Actor::TweenScale(KEY_ORIGINAL_SIZE_FACTOR,KEY_ORIGINAL_SIZE_FACTOR),TWEEN_DURATION,1,false);
 	tween->setEase(_ease);
 	this->addTween(tween);
-	tween->addEventListener(TweenEvent::DONE,CLOSURE(this,&PianoKey::tweenDone));
+	tween->addEventListener(TweenEvent::DONE,CLOSURE(this,&PianoKey::_tweenDone));
 }
 
-void PianoKey::clickHandler(Event *)
+void PianoKey::_clickHandler(Event *)
 {
-	log::messageln("Clicked key %s",getName());
+	log::messageln("Clicked key %c",getNote());
 	if (!_isPressed)
 		keyPress();
 	else
 		keyUnPress();
 }
 
-void PianoKey::tweenDone(Event *)
+void PianoKey::_tweenDone(Event *)
 {
 	// tween is done
 	//log::messageln("Finished tween: %s",this->_name.c_str());
@@ -78,12 +75,12 @@ bool PianoKey::isPressed()
 	return _isPressed;
 }
 
-void PianoKey::setName(std::string n)
+void PianoKey::setNote(char n)
 {
-	this->_name = n;
+	_note = n;
 }
 
-const char * PianoKey::getName()
+char PianoKey::getNote()
 {
-	return this->_name.c_str();
+	return _note;;
 }
