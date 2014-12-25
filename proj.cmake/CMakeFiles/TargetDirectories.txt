@@ -1,0 +1,2 @@
+/home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles/BeatJam.dir
+/home/dan/Documents/Coding/BeatJam/proj.cmake/oxygine-framework/CMakeFiles/oxygine-framework.dir
