@@ -2,7 +2,7 @@
 
 PianoKey::PianoKey()
 {
-	// set ease
+	// set tween ease
 	_ease = Tween::ease_outInBounce;
 
 	// set tween duration
@@ -70,7 +70,7 @@ void PianoKey::clickHandler(Event *)
 void PianoKey::tweenDone(Event *)
 {
 	// tween is done
-	log::messageln("Finished tween: %s",this->_name.c_str());
+	//log::messageln("Finished tween: %s",this->_name.c_str());
 }
 
 bool PianoKey::isPressed()

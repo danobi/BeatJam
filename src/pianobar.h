@@ -1,11 +1,10 @@
 #ifndef PIANOBAR_H
 #define PIANOBAR_H
 
+#include <vector>
 #include "oxygine-framework.h"
+#include "beatjam_constants.h"
 #include "pianokey.h"
-
-#define NUM_SCREEN_SECTIONS 5
-#define NUM_PIANO_KEYS 7
 
 using namespace oxygine;
 
@@ -23,6 +22,12 @@ class PianoBar : public ColorRectSprite
 		 * Note: this is for keyboard input only
 		 */
 		void keyboardUpdateKeys(char nkey); 
+
+		/* 
+		 * this function will return a vector of currently pressed PianoKey pointers
+		 */
+		std::vector<PianoKey*> getPressedKeys();
+		
 	private:
 		/*
 		PianoKey * key_c   => piano_keys[0]

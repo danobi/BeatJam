@@ -2,18 +2,15 @@
 
 PianoBar::PianoBar()
 {
+	// set object name
+	this->setName("pianobar");
+	
 	// init private variables
 	_keyboard_prev_pressed = NULL;
 	_keyboard_curr_pressed = NULL;
 
-	// calculate dimesions for piano keys
-	int screen_length = getStage()->getHeight();
-	int screen_width = getStage()->getWidth();
-	int key_length = screen_length / NUM_SCREEN_SECTIONS;
-	int key_width = screen_width / NUM_PIANO_KEYS;
-	
 	// set up the piano key "holder"
-	setSize(screen_width,key_length); 
+	setSize((int)WINDOW_WIDTH,(int)PIANOKEY_HEIGHT);
 	setX(0);
 	setY(0);
 	setColor(Color::DarkSlateGray);
@@ -25,10 +22,10 @@ PianoBar::PianoBar()
 		_piano_keys[i] = new PianoKey();
 
 		// set position
-		_piano_keys[i]->setPosition(i * key_width,0);
+		_piano_keys[i]->setPosition(i * PIANOKEY_WIDTH,0);
 
 		// set size
-		_piano_keys[i]->setSize(key_width,key_length);
+		_piano_keys[i]->setSize((int)PIANOKEY_WIDTH,(int)PIANOKEY_HEIGHT);
 
 		// set color
 		if (i % 2 == 0)
@@ -123,5 +120,16 @@ void PianoBar::keyboardUpdateKeys(char nkey)
 			}
 			break;
 	}
+}
 
+
+std::vector<PianoKey*> PianoBar::getPressedKeys()
+{
+	std::vector<PianoKey*> re; 
+	for (int i = 0; i < NUM_PIANO_KEYS; ++i)
+	{
+		if (_piano_keys[i]->isPressed())
+			re.push_back(_piano_keys[i]);
+	}
+	return re;  // returns a deep copy
 }

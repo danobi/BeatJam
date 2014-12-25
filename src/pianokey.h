@@ -3,9 +3,7 @@
 
 #include <string>
 #include "oxygine-framework.h"
-
-#define KEY_SHRINK_FACTOR .7
-#define KEY_ORIGINAL_SIZE_FACTOR 1
+#include "beatjam_constants.h"
 
 using namespace oxygine;
 

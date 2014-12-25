@@ -9,9 +9,7 @@ You could start from example.cpp and example.h it has main functions being calle
 #include "DebugActor.h"
 
 #include "example.h"
-
-#define WINDOW_HEIGHT 630
-#define WINDOW_WIDTH (WINDOW_HEIGHT/2)
+#include "beatjam_constants.h"
 
 using namespace oxygine;
 

@@ -21,7 +21,7 @@ void example_init()
 	getStage()->addChild(new KeyboardListener(pb));
 
 	// add the beat stage
-	getStage()->addChild(new BeatStage());
+	getStage()->addChild(new BeatStage(pb));
 }
 
 
