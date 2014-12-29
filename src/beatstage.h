@@ -34,7 +34,8 @@ class BeatStage : public ColorRectSprite
 		 * it will return whether or not the user had the notes pressed
 		 * there are no side effects
 		 */
-		bool _consumeBeat(spBeat beat);
+		//bool _consumeBeat(spBeat beat);
+		bool _consumeBeat(std::vector<spBeat> beats);
 
 		/*
 		 * this function will add NUM_PIANO_KEYS number of beat borders at the right locations

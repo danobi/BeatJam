@@ -28,7 +28,6 @@ class PianoBar : public ColorRectSprite
 		/* 
 		 * this function will return a vector of currently pressed PianoKey pointers
 		 */
-		//std::vector<PianoKey*> getPressedKeys();
 		std::vector<spPianoKey> getPressedKeys();
 		
 	private:

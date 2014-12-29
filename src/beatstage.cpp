@@ -61,46 +61,49 @@ void BeatStage::_addBeat(spBeat beat)
 void BeatStage::doUpdate(const UpdateState & us)
 {
 	// we must determine if any beats can be consumed (ie out of bounds or correctly chorded)
-	for (int i = 0; i < _beats.size(); ++i)
-	{
+	std::vector<spBeat> consum;
+	for (int i = 0; i < _beats.size(); ++i) {
 		if ((float)_beats[i]->getY() <= _beatborder_ypos) 	// beat is in the consume zone
-		{
-			// TODO: change _consumeBeat to take in a vector, so we can have multiple beats at the same time
-			if(_consumeBeat(_beats[i]))
-			{
-				// TODO: add score calulation
-				
-				// find the right border to animate a hit on
-				for (int z = 0; z < _beatborders.size(); ++z)
-				{
-					if (_beatborders[z]->getNote() == _beats[i]->getNote()) {
-						_beatborders[z]->animateBeatHit(_beats[i]);
-						break;
-					}
+			consum.push_back(_beats[i]);
+	}
+
+	// do score calculation / hit + miss animations
+	if(_consumeBeat(consum)) {
+		// TODO: add score calulation
+		
+		// find the right border to animate a hit on
+		for (int i = 0; i < consum.size(); ++i) {
+			for (int z = 0; z < _beatborders.size(); ++z) {
+				if (_beatborders[z]->getNote() == consum[i]->getNote()) {
+					_beatborders[z]->animateBeatHit(consum[i]);
 				}
 			}
-			else
-			{
-				// find the right border to animate a hit on
-				for (int z = 0; z < _beatborders.size(); ++z)
-				{
-					if (_beatborders[z]->getNote() == _beats[i]->getNote()) {
-						_beatborders[z]->animateBeatMiss(_beats[i]);
-						break;
-					}
+		}
+	} 
+	else {
+		// find the right border to animate a miss on
+		for (int i = 0; i < consum.size(); ++i)
+			for (int z = 0; z < _beatborders.size(); ++z) {
+				if (_beatborders[z]->getNote() == consum[i]->getNote()) {
+					_beatborders[z]->animateBeatMiss(consum[i]);
 				}
-
 			}
+	}
 
-			this->removeChild(_beats[i]);
-			_beats.erase(_beats.begin()+i); 		// removes this beat from the array
-													// don't need to increment i because array *should* "slide down"
+	// remove the relevant beats from the beatstage
+	for (int i = 0; i < consum.size(); ++i) {
+		for (int j = 0; j < _beats.size(); ++j) {
+			if (consum[i] == _beats[j]) {
+				this->removeChild(_beats[j]);
+				_beats.erase(_beats.begin()+j); 		// removes this beat from the array
+														// don't need to increment i because array *should* "slide down"
+				break;
+			}
 		}
 	}
 
 	// now let's see if we want to add a beat (based on time interval) NOTE: subject to change when music gets added
-	if (_timeSinceLastBeat >= 1000*_beatInterval)
-	{
+	if (_timeSinceLastBeat >= 1000*_beatInterval) {
 		int random = rand() * 100; 	// random number between 0 and 99 inclusive
 		if (random <= 25)
 			_addBeat(new Beat(BEAT_RADIUS,MOUSE_BEAT));
@@ -109,12 +112,11 @@ void BeatStage::doUpdate(const UpdateState & us)
 
 		// reset counter
 		_timeSinceLastBeat = 0;
-	}
+	} 
 	else
 		_timeSinceLastBeat += us.dt;
 	
-	for (int i = 0; i < _beatborders.size(); ++i)
-	{
+	for (int i = 0; i < _beatborders.size(); ++i) {
 		// see if we need to highlight or unhighlight border
 		std::vector<spPianoKey> pressedkeys = _pb->getPressedKeys();
 		bool foundkey = false;
@@ -128,14 +130,30 @@ void BeatStage::doUpdate(const UpdateState & us)
 	}
 }
 
-bool BeatStage::_consumeBeat(spBeat beat)
+//bool BeatStage::_consumeBeat(spBeat beat)
+bool BeatStage::_consumeBeat(std::vector<spBeat> beats)
 {
 	std::vector<spPianoKey> pressedKeys = _pb->getPressedKeys();
 	
 	// following code subject to change (when _consumeBeat accepts a vector of beats)
+	/*
 	if (pressedKeys.size() == 1 && pressedKeys[0]->getNote() == beat->getNote() && pressedKeys[0]->getPressedBy() == beat->getType())
 		return true;
 	return false;
+	*/
+
+	// fail the consume if more keys pressed than beats, or vis versa
+	if (beats.size() != pressedKeys.size()) return false;
+
+	// now do a detailed check -> make sure each beat has a corresponding keypress
+	for (int i = 0; i < beats.size(); ++i) {
+		bool foundkey = false;
+		for (int j = 0; j < pressedKeys.size(); ++j) 
+			if (beats[i]->getNote() == pressedKeys[i]->getNote() && beats[i]->getType() == pressedKeys[i]->getPressedBy())
+				foundkey = true;
+		if (!foundkey) return false;
+	}
+	return true;
 }
 
 void BeatStage::_addBeatBorders()
@@ -143,8 +161,7 @@ void BeatStage::_addBeatBorders()
 	BeatBorder temp(1.0f);  	// this temp beat border has scale 1.0
 	float scale = (float)BEAT_RADIUS / temp.getWidth() + BEATBORDER_SCALE_OFFSET;
 
-	for (int i = 0; i < NUM_PIANO_KEYS; ++i)
-	{
+	for (int i = 0; i < NUM_PIANO_KEYS; ++i) {
 		spBeatBorder bb = new BeatBorder(scale);
 
 		// do position calculation
@@ -157,8 +174,7 @@ void BeatStage::_addBeatBorders()
 		bb->hideBorder();
 
 		// set notes
-		switch (i)
-		{
+		switch (i) {
 			case 0: 
 				bb->setNote(KEY_0);
 				break;
