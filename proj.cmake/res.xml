@@ -2,7 +2,8 @@
 <resources>
 	<set path = "images" />
 	<atlas>
-		<image file="circle.png"/>	
+		<image file="keyboard_beat.png"/>	
+		<image file="mouse_beat.png"/>	
 		<image file="beat_border.png"/>
 	</atlas>
 	<set path = "fonts" />

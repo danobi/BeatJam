@@ -22,37 +22,37 @@ void KeyboardListener::keyPressDownHandler(Event * ev)
 	if (state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_F]) {
 		updateKeyboard('C');
-		log::messageln("chorded C");
+		//log::messageln("chorded C");
 	}
 	else if (!state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && state[SDL_SCANCODE_F]) {
 		updateKeyboard('D');
-		log::messageln("chorded D");
+		//log::messageln("chorded D");
 	}
 	else if (!state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && state[SDL_SCANCODE_S] && state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_F]) {
 		updateKeyboard('E');
-		log::messageln("chorded E");
+		//log::messageln("chorded E");
 	}
 	else if (!state[SDL_SCANCODE_Q] && state[SDL_SCANCODE_W] && state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_F]) {
 		updateKeyboard('F');
-		log::messageln("chorded F");
+		//log::messageln("chorded F");
 	}
 	else if (!state[SDL_SCANCODE_Q] && state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && state[SDL_SCANCODE_F]) {
 		updateKeyboard('G');
-		log::messageln("chorded G");
+		//log::messageln("chorded G");
 	}
 	else if (!state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && state[SDL_SCANCODE_S] && state[SDL_SCANCODE_D] && state[SDL_SCANCODE_F]) {
 		updateKeyboard('A');
-		log::messageln("chorded A");
+		//log::messageln("chorded A");
 	}
 	else if (state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && state[SDL_SCANCODE_E] && !state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && state[SDL_SCANCODE_F]) {
 		updateKeyboard('B');
-		log::messageln("chorded B");
+		//log::messageln("chorded B");
 	}
 }
 

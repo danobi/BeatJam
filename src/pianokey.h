@@ -41,6 +41,11 @@ class PianoKey : public ColorRectSprite
 		 * gets the name of the PianoKey
 		 */
 		char getNote();
+
+		/*
+		 * gets who pressed the key
+		 */
+		int getPressedBy();
 	private:
 		/*
 		 * private function to animate a press down
@@ -68,6 +73,7 @@ class PianoKey : public ColorRectSprite
 		Tween::EASE _ease;
 		char _note;
 		bool _isPressed;
+		int _whoPressed; 	// who the key was pressed by
 };
 
 #endif

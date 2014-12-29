@@ -19,9 +19,9 @@ class BeatStage : public ColorRectSprite
 		BeatStage(PianoBar * pb);
 
 		/*
-		 * overrides the default update, this checks to see if the user has presed the correct chord
+		 * overrides the default doUpdate, this checks to see if the user has presed the correct chord
 		 */
-		virtual void update(const UpdateState & us);
+		virtual void doUpdate(const UpdateState & us);
 	private:
 		/*
 		 * adds a beat to a *randomized* starting point (on the bottom of the screen -> ie opposite to the pianobar

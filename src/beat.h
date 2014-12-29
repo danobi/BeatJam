@@ -2,6 +2,7 @@
 #define BEAT_H
 
 #include "oxygine-framework.h"
+#include <vector>
 #include "beatjam_constants.h"
 
 using namespace oxygine;
@@ -10,7 +11,7 @@ class Beat : public Sprite
 {
 	public:
 		Beat();
-		Beat(int radius);
+		Beat(int radius, int type);
 
 		/*
 		 * this function will make the beat start "falling" towards the pianobar
@@ -20,10 +21,20 @@ class Beat : public Sprite
 		void beginFall(float timeforfall);
 
 		/*
-		 * this function overrides the update for superclass Actor
+		 * this function overrides the doUpdate for superclass Actor
 		 * this is what will be called in the game mainloop
 		 */
-		virtual void update(const UpdateState & us);
+		virtual void doUpdate(const UpdateState & us);
+
+		/*
+		 * this function will add the tween to the tween queue
+		 */
+		void addAnimateTween(spTween tween);
+
+		/*
+		 * this function will actually execute all the tweens in the queue
+		 */
+		void runAnimateTween();
 
 		/*
 		 * setters/getters for which note this beat belongs to
@@ -37,6 +48,11 @@ class Beat : public Sprite
 		void setRadius(int rad);
 		int getRadius();
 
+		/*
+		 * setters/getters for beat type
+		 */
+		void setType(int type);
+		int getType();
 
 	private:
 		/*
@@ -49,11 +65,19 @@ class Beat : public Sprite
 		 */ 
 		void _clickHandler(Event *);
 
+		/*
+		 * this private function will detatch the beat from the parent if called
+		 * this *should* be used as a callback for when BeatBorder is done animating
+		 */
+		void _tweenDone(Event *);
+
 		Resources _gameResources;
+		std::vector<spTween> _tween_queue;
 		int _radius;
 		float _timeforfall;       // number of seconds it takes for a beat to hit pianobar
 		bool _isFalling;
 		char _note; 			  // which note/key this beat belongs to
+		int _type;
 };
 
 #endif

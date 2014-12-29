@@ -3,6 +3,7 @@
 
 #include "oxygine-framework.h"
 #include "beatjam_constants.h"
+#include "beat.h"
 
 using namespace oxygine;
 
@@ -26,6 +27,16 @@ class BeatBorder : public Sprite
 		 * and then animates it
 		 */
 		void hideBorder();
+
+		/*
+		 * animate a beat hit
+		 */
+		void animateBeatHit(Beat * beat);
+
+		/*
+		 * animate a beat miss
+		 */
+		void animateBeatMiss(Beat * beat);
 
 		/*
 		 * returns if the key is currently pressed or not

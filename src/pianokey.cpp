@@ -12,6 +12,7 @@ PianoKey::PianoKey()
 	_note = '\0';
 
 	_isPressed = false;
+	_whoPressed = MOUSE_PRESS;
 }
 void PianoKey::keyPress()
 {
@@ -20,6 +21,7 @@ void PianoKey::keyPress()
 	{
 		_isPressed = !_isPressed;
 		_animatePress();
+		_whoPressed = KEYBOARD_PRESS;
 	}
 	else
 		log::messageln("Key %c: already is pressed",getNote());
@@ -59,7 +61,10 @@ void PianoKey::_clickHandler(Event *)
 {
 	log::messageln("Clicked key %c",getNote());
 	if (!_isPressed)
+	{
 		keyPress();
+		_whoPressed = MOUSE_PRESS; 	// kind of a hack, this executes after keyPress(..) sets it to keyboard press
+	}
 	else
 		keyUnPress();
 }
@@ -83,4 +88,9 @@ void PianoKey::setNote(char n)
 char PianoKey::getNote()
 {
 	return _note;;
+}
+
+int PianoKey::getPressedBy()
+{
+	return _whoPressed;
 }

@@ -230,6 +230,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /home/dan/Dev_tools/oxygine-framework-with-sdl/oxygine-framework/oxygine/src/utils/ImageUtils.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /home/dan/Dev_tools/oxygine-framework-with-sdl/oxygine-framework/oxygine/src/utils/intrusive_list.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /home/dan/Dev_tools/oxygine-framework-with-sdl/oxygine-framework/oxygine/src/utils/stringUtils.h
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beat.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatborder.cpp
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatborder.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h

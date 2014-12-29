@@ -28,6 +28,10 @@
 #define KEY_4 ('G')
 #define KEY_5 ('A')
 #define KEY_6 ('B')
+#define KEYBOARD_BEAT (1)
+#define KEYBOARD_PRESS (1)
+#define MOUSE_BEAT (0)
+#define MOUSE_PRESS (0)
 // ---------> end constants
 
 
