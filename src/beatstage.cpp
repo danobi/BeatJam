@@ -116,8 +116,8 @@ void BeatStage::doUpdate(const UpdateState & us)
 	else
 		_timeSinceLastBeat += us.dt;
 	
+	// see if we need to highlight or unhighlight border
 	for (int i = 0; i < _beatborders.size(); ++i) {
-		// see if we need to highlight or unhighlight border
 		std::vector<spPianoKey> pressedkeys = _pb->getPressedKeys();
 		bool foundkey = false;
 		for (int j = 0; j < pressedkeys.size(); ++j)
@@ -130,17 +130,10 @@ void BeatStage::doUpdate(const UpdateState & us)
 	}
 }
 
-//bool BeatStage::_consumeBeat(spBeat beat)
 bool BeatStage::_consumeBeat(std::vector<spBeat> beats)
 {
+	// get all the pressed pianokeys at this moment
 	std::vector<spPianoKey> pressedKeys = _pb->getPressedKeys();
-	
-	// following code subject to change (when _consumeBeat accepts a vector of beats)
-	/*
-	if (pressedKeys.size() == 1 && pressedKeys[0]->getNote() == beat->getNote() && pressedKeys[0]->getPressedBy() == beat->getType())
-		return true;
-	return false;
-	*/
 
 	// fail the consume if more keys pressed than beats, or vis versa
 	if (beats.size() != pressedKeys.size()) return false;
@@ -175,27 +168,13 @@ void BeatStage::_addBeatBorders()
 
 		// set notes
 		switch (i) {
-			case 0: 
-				bb->setNote(KEY_0);
-				break;
-			case 1: 
-				bb->setNote(KEY_1);
-				break;
-			case 2: 
-				bb->setNote(KEY_2);
-				break;
-			case 3: 
-				bb->setNote(KEY_3);
-				break;
-			case 4: 
-				bb->setNote(KEY_4);
-				break;
-			case 5: 
-				bb->setNote(KEY_5);
-				break;
-			case 6: 
-				bb->setNote(KEY_6);
-				break;
+			case 0: bb->setNote(KEY_0); break;
+			case 1: bb->setNote(KEY_1); break;
+			case 2: bb->setNote(KEY_2); break;
+			case 3: bb->setNote(KEY_3); break;
+			case 4: bb->setNote(KEY_4); break;
+			case 5: bb->setNote(KEY_5); break;
+			case 6: bb->setNote(KEY_6); break;
 		}
 		_beatborders.push_back(bb);
 		addChild(bb);

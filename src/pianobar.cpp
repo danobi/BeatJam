@@ -36,27 +36,13 @@ PianoBar::PianoBar()
 		// set name
 		switch (i)
 		{
-			case 0: 
-				_piano_keys[i]->setNote(KEY_0);
-				break;
-			case 1: 
-				_piano_keys[i]->setNote(KEY_1);
-				break;
-			case 2: 
-				_piano_keys[i]->setNote(KEY_2);
-				break;
-			case 3: 
-				_piano_keys[i]->setNote(KEY_3);
-				break;
-			case 4: 
-				_piano_keys[i]->setNote(KEY_4);
-				break;
-			case 5: 
-				_piano_keys[i]->setNote(KEY_5);
-				break;
-			case 6: 
-				_piano_keys[i]->setNote(KEY_6);
-				break;
+			case 0: _piano_keys[i]->setNote(KEY_0); break;
+			case 1: _piano_keys[i]->setNote(KEY_1); break;
+			case 2: _piano_keys[i]->setNote(KEY_2); break;
+			case 3: _piano_keys[i]->setNote(KEY_3); break;
+			case 4: _piano_keys[i]->setNote(KEY_4); break;
+			case 5: _piano_keys[i]->setNote(KEY_5); break;
+			case 6: _piano_keys[i]->setNote(KEY_6); break;
 		}
 
 		// add child
