@@ -1,6 +1,6 @@
 #include "keyboard_listener.h"
 
-KeyboardListener::KeyboardListener(PianoBar * pb)
+KeyboardListener::KeyboardListener(spPianoBar pb)
 {
 	// add listener(s) to the stage
 	// we will check keyboard state only when a key is pressed, to increase performance
@@ -18,7 +18,7 @@ KeyboardListener::KeyboardListener(PianoBar * pb)
 void KeyboardListener::keyPressDownHandler(Event * ev)
 {
 	// figure out which note was chorded
-	const Uint8 *state = SDL_GetKeyboardState(NULL);
+	const Uint8 * state = SDL_GetKeyboardState(NULL);
 	if (state[SDL_SCANCODE_Q] && !state[SDL_SCANCODE_W] && !state[SDL_SCANCODE_E] && state[SDL_SCANCODE_R] &&
 			!state[SDL_SCANCODE_A] && !state[SDL_SCANCODE_S] && !state[SDL_SCANCODE_D] && !state[SDL_SCANCODE_F]) {
 		updateKeyboard('C');

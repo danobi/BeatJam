@@ -7,6 +7,8 @@
 
 using namespace oxygine;
 
+DECLARE_SMART(PianoKey,spPianoKey);
+
 class PianoKey : public ColorRectSprite
 {
 	public:

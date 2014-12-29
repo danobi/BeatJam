@@ -1,6 +1,6 @@
 #include "beatstage.h"
 
-BeatStage::BeatStage(PianoBar * pb)
+BeatStage::BeatStage(spPianoBar pb)
 {
 	// save parameter(s) / init stuff
 	_pb = pb;
@@ -20,7 +20,7 @@ BeatStage::BeatStage(PianoBar * pb)
 	srand(time(NULL));
 }
 
-void BeatStage::_addBeat(Beat * beat)
+void BeatStage::_addBeat(spBeat beat)
 {
 	// set the original position of the beat (randomly)
 	int random = rand() % NUM_PIANO_KEYS;     // random number between 0 and NUM_PIANO_KEYS-1, inclusive
@@ -116,7 +116,7 @@ void BeatStage::doUpdate(const UpdateState & us)
 	for (int i = 0; i < _beatborders.size(); ++i)
 	{
 		// see if we need to highlight or unhighlight border
-		std::vector<PianoKey*> pressedkeys = _pb->getPressedKeys();
+		std::vector<spPianoKey> pressedkeys = _pb->getPressedKeys();
 		bool foundkey = false;
 		for (int j = 0; j < pressedkeys.size(); ++j)
 			if (pressedkeys[j]->getNote() == _beatborders[i]->getNote())
@@ -128,9 +128,9 @@ void BeatStage::doUpdate(const UpdateState & us)
 	}
 }
 
-bool BeatStage::_consumeBeat(Beat * beat)
+bool BeatStage::_consumeBeat(spBeat beat)
 {
-	std::vector<PianoKey*> pressedKeys = _pb->getPressedKeys();
+	std::vector<spPianoKey> pressedKeys = _pb->getPressedKeys();
 	
 	// following code subject to change (when _consumeBeat accepts a vector of beats)
 	if (pressedKeys.size() == 1 && pressedKeys[0]->getNote() == beat->getNote() && pressedKeys[0]->getPressedBy() == beat->getType())
@@ -145,7 +145,7 @@ void BeatStage::_addBeatBorders()
 
 	for (int i = 0; i < NUM_PIANO_KEYS; ++i)
 	{
-		BeatBorder * bb = new BeatBorder(scale);
+		spBeatBorder bb = new BeatBorder(scale);
 
 		// do position calculation
 		float xpos = i * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;

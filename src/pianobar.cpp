@@ -123,9 +123,9 @@ void PianoBar::keyboardUpdateKeys(char nkey)
 }
 
 
-std::vector<PianoKey*> PianoBar::getPressedKeys()
+std::vector<spPianoKey> PianoBar::getPressedKeys()
 {
-	std::vector<PianoKey*> re; 
+	std::vector<spPianoKey> re; 
 	for (int i = 0; i < NUM_PIANO_KEYS; ++i)
 	{
 		if (_piano_keys[i]->isPressed())

@@ -7,6 +7,8 @@
 
 using namespace oxygine;
 
+DECLARE_SMART(BeatBorder,spBeatBorder);
+
 class BeatBorder : public Sprite
 {
 	public:
@@ -31,12 +33,12 @@ class BeatBorder : public Sprite
 		/*
 		 * animate a beat hit
 		 */
-		void animateBeatHit(Beat * beat);
+		void animateBeatHit(spBeat beat);
 
 		/*
 		 * animate a beat miss
 		 */
-		void animateBeatMiss(Beat * beat);
+		void animateBeatMiss(spBeat beat);
 
 		/*
 		 * returns if the key is currently pressed or not
@@ -51,14 +53,20 @@ class BeatBorder : public Sprite
 
 	private:
 		/*
-		 * private function to animate a highlight
+		 * private function to animate a beatborder fade out
 		 */
 		void _animateHide();
 
 		/*
-		 * private function to animate a un-highlight
+		 * private function to animate a beatborder fade in
 		 */
 		void _animateShow();
+
+		/*
+		 * private (hacky) fucntion to animate a red beatborder in
+		 * and then it will fade out by itself in TWEEN_DURATION*3 time
+		 */
+		void _animateShowAndRedden();
 
 		/*
 		 * simple click handler

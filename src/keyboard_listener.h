@@ -7,6 +7,8 @@
 
 using namespace oxygine;
 
+DECLARE_SMART(KeyboardListener,spKeyboardListener);
+
 // TODO: find a better class to inherit from
 class KeyboardListener : public ColorRectSprite
 {
@@ -16,7 +18,7 @@ class KeyboardListener : public ColorRectSprite
 		 * requires an already created PianoBar
 		 * TODO: find a way to uncouple these classes
 		 */
-		KeyboardListener(PianoBar * pb);
+		KeyboardListener(spPianoBar pb);
 	private:
 		/*
 		 * a helper function to make the code cleaner
@@ -36,7 +38,7 @@ class KeyboardListener : public ColorRectSprite
 		// private data
 		char _currentNote;
 		char _prevNote;
-		PianoBar * _pianobar;
+		spPianoBar _pianobar;
 };
 
 #endif

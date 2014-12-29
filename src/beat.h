@@ -7,6 +7,8 @@
 
 using namespace oxygine;
 
+DECLARE_SMART(Beat,spBeat);
+
 class Beat : public Sprite
 {
 	public:

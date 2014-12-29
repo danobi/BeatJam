@@ -8,6 +8,8 @@
 
 using namespace oxygine;
 
+DECLARE_SMART(PianoBar,spPianoBar);
+
 class PianoBar : public ColorRectSprite
 {
 	public:
@@ -26,7 +28,8 @@ class PianoBar : public ColorRectSprite
 		/* 
 		 * this function will return a vector of currently pressed PianoKey pointers
 		 */
-		std::vector<PianoKey*> getPressedKeys();
+		//std::vector<PianoKey*> getPressedKeys();
+		std::vector<spPianoKey> getPressedKeys();
 		
 	private:
 		/*
@@ -38,9 +41,9 @@ class PianoBar : public ColorRectSprite
 		PianoKey * key_a;
 		PianoKey * key_b;
 		*/
-		PianoKey * _piano_keys[NUM_PIANO_KEYS];
-		PianoKey * _keyboard_prev_pressed;
-		PianoKey * _keyboard_curr_pressed;
+		spPianoKey _piano_keys[NUM_PIANO_KEYS];
+		spPianoKey _keyboard_prev_pressed;
+		spPianoKey _keyboard_curr_pressed;
 };
 
 #endif
