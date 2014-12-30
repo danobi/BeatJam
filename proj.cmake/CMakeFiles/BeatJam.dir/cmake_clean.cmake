@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beat.cpp.o"
   "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o"
+  "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o"
   "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o"
   "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o"
   "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o"

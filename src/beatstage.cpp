@@ -18,6 +18,15 @@ BeatStage::BeatStage(spPianoBar pb)
 
 	// seed random generator
 	srand(time(NULL));
+
+
+	// DEBUG WORK HERE
+	/*
+	BeatscoreParser bsp(std::string("beatscore/test.beatj"));
+	log::messageln("%c%c%c%c",bsp.getNoteAtBeat(1,1),bsp.getNoteAtBeat(1,2),bsp.getNoteAtBeat(1,3),bsp.getNoteAtBeat(1,4));
+	log::messageln("%c%c%c%c",bsp.getNoteAtBeat(226,1),bsp.getNoteAtBeat(226,2),bsp.getNoteAtBeat(226,3),bsp.getNoteAtBeat(226,4));
+	log::messageln("%c%c%c%c",bsp.getNoteAtBeat(157,1),bsp.getNoteAtBeat(157,2),bsp.getNoteAtBeat(157,3),bsp.getNoteAtBeat(157,4));
+	*/
 }
 
 void BeatStage::_addBeat(spBeat beat)
@@ -29,29 +38,14 @@ void BeatStage::_addBeat(spBeat beat)
 	beat->beginFall(5);  	// 5 seconds for beat to hit pianobar
 
 	// set the note
-	switch (random)
-	{
-		case 0: 
-			beat->setNote(KEY_0);
-			break;
-		case 1: 
-			beat->setNote(KEY_1);
-			break;
-		case 2: 
-			beat->setNote(KEY_2);
-			break;
-		case 3: 
-			beat->setNote(KEY_3);
-			break;
-		case 4: 
-			beat->setNote(KEY_4);
-			break;
-		case 5: 
-			beat->setNote(KEY_5);
-			break;
-		case 6: 
-			beat->setNote(KEY_6);
-			break;
+	switch (random) {
+		case 0: beat->setNote(KEY_0); break;
+		case 1: beat->setNote(KEY_1); break;
+		case 2: beat->setNote(KEY_2); break;
+		case 3: beat->setNote(KEY_3); break;
+		case 4: beat->setNote(KEY_4); break;
+		case 5: beat->setNote(KEY_5); break;
+		case 6: beat->setNote(KEY_6); break;
 	}
 
 	_beats.push_back(beat);
@@ -60,7 +54,7 @@ void BeatStage::_addBeat(spBeat beat)
 
 void BeatStage::doUpdate(const UpdateState & us)
 {
-	// we must determine if any beats can be consumed (ie out of bounds or correctly chorded)
+	// determine if any beats can be consumed (ie out of bounds or correctly chorded)
 	std::vector<spBeat> consum;
 	for (int i = 0; i < _beats.size(); ++i) {
 		if ((float)_beats[i]->getY() <= _beatborder_ypos) 	// beat is in the consume zone
@@ -105,7 +99,7 @@ void BeatStage::doUpdate(const UpdateState & us)
 	// now let's see if we want to add a beat (based on time interval) NOTE: subject to change when music gets added
 	if (_timeSinceLastBeat >= 1000*_beatInterval) {
 		int random = rand() * 100; 	// random number between 0 and 99 inclusive
-		if (random <= 25)
+		if (random <= 25) 
 			_addBeat(new Beat(BEAT_RADIUS,MOUSE_BEAT));
 		else
 			_addBeat(new Beat(BEAT_RADIUS,KEYBOARD_BEAT));

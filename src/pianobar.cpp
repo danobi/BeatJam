@@ -16,8 +16,7 @@ PianoBar::PianoBar()
 	setColor(Color::DarkSlateGray);
 
 	// put the keys in the right spots
-	for (int i = 0; i < NUM_PIANO_KEYS; ++i)
-	{
+	for (int i = 0; i < NUM_PIANO_KEYS; ++i) {
 		// init PianoKey
 		_piano_keys[i] = new PianoKey();
 
@@ -34,8 +33,7 @@ PianoBar::PianoBar()
 			_piano_keys[i]->setColor(Color::Salmon);
 
 		// set name
-		switch (i)
-		{
+		switch (i) {
 			case 0: _piano_keys[i]->setNote(KEY_0); break;
 			case 1: _piano_keys[i]->setNote(KEY_1); break;
 			case 2: _piano_keys[i]->setNote(KEY_2); break;
@@ -61,8 +59,7 @@ void PianoBar::keyboardUpdateKeys(char nkey)
 		_keyboard_prev_pressed->keyUnPress();
 
 	// update and press the _keyboard_curr_pressed
-	switch (nkey)
-	{
+	switch (nkey) {
 		case KEY_0:
 			if (!_piano_keys[0]->isPressed()) {
 				_piano_keys[0]->keyPress();
@@ -112,8 +109,7 @@ void PianoBar::keyboardUpdateKeys(char nkey)
 std::vector<spPianoKey> PianoBar::getPressedKeys()
 {
 	std::vector<spPianoKey> re; 
-	for (int i = 0; i < NUM_PIANO_KEYS; ++i)
-	{
+	for (int i = 0; i < NUM_PIANO_KEYS; ++i) {
 		if (_piano_keys[i]->isPressed())
 			re.push_back(_piano_keys[i]);
 	}

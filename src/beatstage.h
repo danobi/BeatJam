@@ -8,6 +8,7 @@
 #include "pianobar.h"
 #include "beat.h"
 #include "beatborder.h"
+#include "beatscoreparser.h"
 
 using namespace oxygine;
 

@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/dan/Documents/Coding/BeatJam/src/beat.cpp" "/home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beat.cpp.o"
   "/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp" "/home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o"
+  "/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp" "/home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o"
   "/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp" "/home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o"
   "/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp" "/home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o"
   "/home/dan/Documents/Coding/BeatJam/src/example.cpp" "/home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o"

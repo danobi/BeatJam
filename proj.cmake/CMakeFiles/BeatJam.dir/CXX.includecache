@@ -976,6 +976,26 @@ beat.h
 
 /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
 
+/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
+iostream
+-
+assert.h
+-
+vector
+-
+string
+-
+fstream
+-
+stdlib.h
+-
+cstring
+-
+stdio.h
+-
+beatjam_constants.h
+/home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+
 /home/dan/Documents/Coding/BeatJam/src/beatstage.cpp
 beatstage.h
 /home/dan/Documents/Coding/BeatJam/src/beatstage.h
@@ -995,6 +1015,8 @@ beat.h
 /home/dan/Documents/Coding/BeatJam/src/beat.h
 beatborder.h
 /home/dan/Documents/Coding/BeatJam/src/beatborder.h
+beatscoreparser.h
+/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
 
 /home/dan/Documents/Coding/BeatJam/src/pianobar.h
 vector

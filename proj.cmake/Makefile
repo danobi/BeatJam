@@ -217,6 +217,30 @@ home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.s:
 	$(MAKE) -f CMakeFiles/BeatJam.dir/build.make CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.s
 .PHONY : home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.s
 
+home/dan/Documents/Coding/BeatJam/src/beatscoreparser.o: home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o
+.PHONY : home/dan/Documents/Coding/BeatJam/src/beatscoreparser.o
+
+# target to build an object file
+home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o:
+	$(MAKE) -f CMakeFiles/BeatJam.dir/build.make CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o
+.PHONY : home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o
+
+home/dan/Documents/Coding/BeatJam/src/beatscoreparser.i: home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.i
+.PHONY : home/dan/Documents/Coding/BeatJam/src/beatscoreparser.i
+
+# target to preprocess a source file
+home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.i:
+	$(MAKE) -f CMakeFiles/BeatJam.dir/build.make CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.i
+.PHONY : home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.i
+
+home/dan/Documents/Coding/BeatJam/src/beatscoreparser.s: home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.s
+.PHONY : home/dan/Documents/Coding/BeatJam/src/beatscoreparser.s
+
+# target to generate assembly for a file
+home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.s:
+	$(MAKE) -f CMakeFiles/BeatJam.dir/build.make CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.s
+.PHONY : home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.s
+
 home/dan/Documents/Coding/BeatJam/src/beatstage.o: home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o
 .PHONY : home/dan/Documents/Coding/BeatJam/src/beatstage.o
 
@@ -381,6 +405,9 @@ help:
 	@echo "... home/dan/Documents/Coding/BeatJam/src/beatborder.o"
 	@echo "... home/dan/Documents/Coding/BeatJam/src/beatborder.i"
 	@echo "... home/dan/Documents/Coding/BeatJam/src/beatborder.s"
+	@echo "... home/dan/Documents/Coding/BeatJam/src/beatscoreparser.o"
+	@echo "... home/dan/Documents/Coding/BeatJam/src/beatscoreparser.i"
+	@echo "... home/dan/Documents/Coding/BeatJam/src/beatscoreparser.s"
 	@echo "... home/dan/Documents/Coding/BeatJam/src/beatstage.o"
 	@echo "... home/dan/Documents/Coding/BeatJam/src/beatstage.i"
 	@echo "... home/dan/Documents/Coding/BeatJam/src/beatstage.s"

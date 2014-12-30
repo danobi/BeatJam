@@ -95,9 +95,32 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o.pr
 
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o.provides.build: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o
 
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o: CMakeFiles/BeatJam.dir/flags.make
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o -c /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp
+
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp > CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.i
+
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp -o CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.s
+
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o.requires:
+.PHONY : CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o.requires
+
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o.provides: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o.requires
+	$(MAKE) -f CMakeFiles/BeatJam.dir/build.make CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o.provides.build
+.PHONY : CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o.provides
+
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o.provides.build: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o
+
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: CMakeFiles/BeatJam.dir/flags.make
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatstage.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o -c /home/dan/Documents/Coding/BeatJam/src/beatstage.cpp
 
@@ -120,7 +143,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o.pro
 
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: CMakeFiles/BeatJam.dir/flags.make
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: /home/dan/Documents/Coding/BeatJam/src/entry_point.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o -c /home/dan/Documents/Coding/BeatJam/src/entry_point.cpp
 
@@ -143,7 +166,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o.p
 
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: CMakeFiles/BeatJam.dir/flags.make
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /home/dan/Documents/Coding/BeatJam/src/example.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o -c /home/dan/Documents/Coding/BeatJam/src/example.cpp
 
@@ -166,7 +189,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o.provi
 
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/keyboard_listener.cpp.o: CMakeFiles/BeatJam.dir/flags.make
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/keyboard_listener.cpp.o: /home/dan/Documents/Coding/BeatJam/src/keyboard_listener.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/keyboard_listener.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/keyboard_listener.cpp.o -c /home/dan/Documents/Coding/BeatJam/src/keyboard_listener.cpp
 
@@ -189,7 +212,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/keyboard_listener.c
 
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianobar.cpp.o: CMakeFiles/BeatJam.dir/flags.make
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianobar.cpp.o: /home/dan/Documents/Coding/BeatJam/src/pianobar.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianobar.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianobar.cpp.o -c /home/dan/Documents/Coding/BeatJam/src/pianobar.cpp
 
@@ -212,7 +235,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianobar.cpp.o.prov
 
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianokey.cpp.o: CMakeFiles/BeatJam.dir/flags.make
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianokey.cpp.o: /home/dan/Documents/Coding/BeatJam/src/pianokey.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/dan/Documents/Coding/BeatJam/proj.cmake/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianokey.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianokey.cpp.o -c /home/dan/Documents/Coding/BeatJam/src/pianokey.cpp
 
@@ -237,6 +260,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/pianokey.cpp.o.prov
 BeatJam_OBJECTS = \
 "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beat.cpp.o" \
 "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o" \
+"CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o" \
 "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o" \
 "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o" \
 "CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o" \
@@ -249,6 +273,7 @@ BeatJam_EXTERNAL_OBJECTS =
 
 BeatJam: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beat.cpp.o
 BeatJam: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o
+BeatJam: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o
 BeatJam: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o
 BeatJam: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o
 BeatJam: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o
@@ -273,6 +298,7 @@ CMakeFiles/BeatJam.dir/build: BeatJam
 
 CMakeFiles/BeatJam.dir/requires: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beat.cpp.o.requires
 CMakeFiles/BeatJam.dir/requires: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o.requires
+CMakeFiles/BeatJam.dir/requires: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o.requires
 CMakeFiles/BeatJam.dir/requires: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o.requires
 CMakeFiles/BeatJam.dir/requires: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o.requires
 CMakeFiles/BeatJam.dir/requires: CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o.requires

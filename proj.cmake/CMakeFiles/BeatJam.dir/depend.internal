@@ -278,6 +278,10 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o
  /usr/include/SDL2/SDL_video.h
  /usr/include/SDL2/begin_code.h
  /usr/include/SDL2/close_code.h
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o
+ /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+ /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp
+ /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o
  /home/dan/Dev_tools/oxygine-framework-with-sdl/oxygine-framework/oxygine/src/Actor.h
  /home/dan/Dev_tools/oxygine-framework-with-sdl/oxygine-framework/oxygine/src/AnimationFrame.h
@@ -373,6 +377,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o
  /home/dan/Documents/Coding/BeatJam/src/beat.h
  /home/dan/Documents/Coding/BeatJam/src/beatborder.h
  /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+ /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
  /home/dan/Documents/Coding/BeatJam/src/beatstage.cpp
  /home/dan/Documents/Coding/BeatJam/src/beatstage.h
  /home/dan/Documents/Coding/BeatJam/src/pianobar.h
@@ -515,6 +520,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o
  /home/dan/Documents/Coding/BeatJam/src/beat.h
  /home/dan/Documents/Coding/BeatJam/src/beatborder.h
  /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+ /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
  /home/dan/Documents/Coding/BeatJam/src/beatstage.h
  /home/dan/Documents/Coding/BeatJam/src/entry_point.cpp
  /home/dan/Documents/Coding/BeatJam/src/example.h
@@ -659,6 +665,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o
  /home/dan/Documents/Coding/BeatJam/src/beat.h
  /home/dan/Documents/Coding/BeatJam/src/beatborder.h
  /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+ /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
  /home/dan/Documents/Coding/BeatJam/src/beatstage.h
  /home/dan/Documents/Coding/BeatJam/src/example.cpp
  /home/dan/Documents/Coding/BeatJam/src/example.h

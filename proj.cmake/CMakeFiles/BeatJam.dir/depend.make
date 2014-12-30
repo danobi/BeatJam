@@ -278,6 +278,10 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /usr/include/SDL2/begin_code.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatborder.cpp.o: /usr/include/SDL2/close_code.h
 
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatscoreparser.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
+
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Dev_tools/oxygine-framework-with-sdl/oxygine-framework/oxygine/src/Actor.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Dev_tools/oxygine-framework-with-sdl/oxygine-framework/oxygine/src/AnimationFrame.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Dev_tools/oxygine-framework-with-sdl/oxygine-framework/oxygine/src/Box9Sprite.h
@@ -372,6 +376,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beat.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatborder.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatstage.cpp
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatstage.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/beatstage.cpp.o: /home/dan/Documents/Coding/BeatJam/src/pianobar.h
@@ -514,6 +519,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: 
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beat.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatborder.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatstage.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: /home/dan/Documents/Coding/BeatJam/src/entry_point.cpp
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/entry_point.cpp.o: /home/dan/Documents/Coding/BeatJam/src/example.h
@@ -658,6 +664,7 @@ CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /hom
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beat.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatborder.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatjam_constants.h
+CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatscoreparser.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /home/dan/Documents/Coding/BeatJam/src/beatstage.h
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /home/dan/Documents/Coding/BeatJam/src/example.cpp
 CMakeFiles/BeatJam.dir/home/dan/Documents/Coding/BeatJam/src/example.cpp.o: /home/dan/Documents/Coding/BeatJam/src/example.h
