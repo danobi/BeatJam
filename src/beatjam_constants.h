@@ -2,6 +2,7 @@
 #define BEATJAM_CONSTANTS_H
 
 // ---------> begin constants
+#define DEBUG_MODE (true)
 #define WINDOW_HEIGHT (630)
 #define WINDOW_WIDTH (WINDOW_HEIGHT/2)
 

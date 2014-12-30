@@ -31,21 +31,25 @@ BeatStage::BeatStage(spPianoBar pb)
 
 void BeatStage::_addBeat(spBeat beat)
 {
-	// set the original position of the beat (randomly)
-	int random = rand() % NUM_PIANO_KEYS;     // random number between 0 and NUM_PIANO_KEYS-1, inclusive
-	float xpos = random * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
-	beat->setPosition(xpos,WINDOW_HEIGHT);
-	beat->beginFall(5);  	// 5 seconds for beat to hit pianobar
+	if (!DEBUG_MODE) {
+	}
+	else {
+		// set the original position of the beat (randomly)
+		int random = rand() % NUM_PIANO_KEYS;     // random number between 0 and NUM_PIANO_KEYS-1, inclusive
+		float xpos = random * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
+		beat->setPosition(xpos,WINDOW_HEIGHT);
+		beat->beginFall(5);  	// 5 seconds for beat to hit pianobar
 
-	// set the note
-	switch (random) {
-		case 0: beat->setNote(KEY_0); break;
-		case 1: beat->setNote(KEY_1); break;
-		case 2: beat->setNote(KEY_2); break;
-		case 3: beat->setNote(KEY_3); break;
-		case 4: beat->setNote(KEY_4); break;
-		case 5: beat->setNote(KEY_5); break;
-		case 6: beat->setNote(KEY_6); break;
+		// set the note
+		switch (random) {
+			case 0: beat->setNote(KEY_0); break;
+			case 1: beat->setNote(KEY_1); break;
+			case 2: beat->setNote(KEY_2); break;
+			case 3: beat->setNote(KEY_3); break;
+			case 4: beat->setNote(KEY_4); break;
+			case 5: beat->setNote(KEY_5); break;
+			case 6: beat->setNote(KEY_6); break;
+		}
 	}
 
 	_beats.push_back(beat);
@@ -96,19 +100,23 @@ void BeatStage::doUpdate(const UpdateState & us)
 		}
 	}
 
-	// now let's see if we want to add a beat (based on time interval) NOTE: subject to change when music gets added
-	if (_timeSinceLastBeat >= 1000*_beatInterval) {
-		int random = rand() * 100; 	// random number between 0 and 99 inclusive
-		if (random <= 25) 
-			_addBeat(new Beat(BEAT_RADIUS,MOUSE_BEAT));
-		else
-			_addBeat(new Beat(BEAT_RADIUS,KEYBOARD_BEAT));
+	if (!DEBUG_MODE) {
+	}
+	else {
+		// debug mode, we add a random beat every _beatInterval seconds
+		if (_timeSinceLastBeat >= 1000*_beatInterval) {
+			int random = rand() * 100; 	// random number between 0 and 99 inclusive
+			if (random <= 25) 
+				_addBeat(new Beat(BEAT_RADIUS,MOUSE_BEAT));
+			else
+				_addBeat(new Beat(BEAT_RADIUS,KEYBOARD_BEAT));
 
-		// reset counter
-		_timeSinceLastBeat = 0;
-	} 
-	else
-		_timeSinceLastBeat += us.dt;
+			// reset counter
+			_timeSinceLastBeat = 0;
+		} 
+		else
+			_timeSinceLastBeat += us.dt;
+	}
 	
 	// see if we need to highlight or unhighlight border
 	for (int i = 0; i < _beatborders.size(); ++i) {
