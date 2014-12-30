@@ -12,3 +12,7 @@ How to do a local build
 		- Enter the proj.cmake directory and run "cmake ."
 	- Then run "make" in the proj.cmake directory
 	- ./BeatJam
+
+Known bugs
+=======
+- If two beats hit the consume zone too close to each other (~2 subbeats apart), the consume zone border will persist

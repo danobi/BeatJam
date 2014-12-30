@@ -25,7 +25,7 @@ def gen_beatscore():
     nfile.write("// DOUBLE FORWARD SLASHES ARE COMMENTS, HASHTAGS ARE GAME ARGUMENTS, CHANGE ONLY WHEN APPROPRIATE\n")
     nfile.write("// NOTE: COMMENTS MUST BE THE ENTIRE LINE, IE. NOT LIKE THIS: #BEGIN // BLAH\n")
     nfile.write("// NOTE: GAME ARGUMENTS CANNOT HAVE ANY SPACES, IE. NOT LIKE THIS: #SONG = BLAH\n")
-    nfile.write("// NOTE: SUBBEAT DESIGNATIONS CANNO HAVE ANY SPACES, IE. NOT LIKE THIS: 1 -> C\n\n")
+    nfile.write("// NOTE: SUBBEAT DESIGNATIONS CANNOT HAVE ANY SPACES, IE. NOT LIKE THIS: 1 -> C\n\n")
     nfile.write("#SONG=\n")
     nfile.write("#LENGTH="+str(length)+"\n")
     nfile.write("#BPM="+str(bpm)+"\n\n")

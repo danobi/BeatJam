@@ -19,6 +19,8 @@ class BeatStage : public ColorRectSprite
 		// TODO: find a way to decouple PianoBar
 		BeatStage(spPianoBar pb);
 
+		~BeatStage();
+
 		/*
 		 * overrides the default doUpdate, this checks to see if the user has presed the correct chord
 		 */
@@ -47,13 +49,19 @@ class BeatStage : public ColorRectSprite
 		std::vector<spBeat> _beats;  		// array of currently VALID beats in the beatstage
 		std::vector<spBeatBorder> _beatborders;
 		spPianoBar _pb;
+		BeatscoreParser * bsp;
 		float _beatborder_ypos; 			// to help determine where consume zone is
-
-		// debug mode variables
+		int _BPM;
+		int _songlength;
+		std::string _songname;
+		int _currentBeat;
+		int _currentSubBeat;
+		int _timeSinceLastSubBeat;
 		int _timeSinceLastBeat; 			// time in ms since last beat was added
 											// NOTE: subject to change when music is added
-	 	int _beatInterval; 					// how often a beat should be added in seconds
+	 	float _beatInterval; 					// how often a beat should be added in seconds
 											// NOTE: subject to change when music is added
+		float _subBeatInterval;
 };
 
 #endif

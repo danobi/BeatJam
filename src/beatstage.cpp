@@ -4,8 +4,10 @@ BeatStage::BeatStage(spPianoBar pb)
 {
 	// save parameter(s) / init stuff
 	_pb = pb;
+	_timeSinceLastSubBeat = 0;
 	_timeSinceLastBeat = 0; 	// not sure if bad idea
-	_beatInterval = 3; 			// once a second 
+	_currentBeat = 1;
+	_currentSubBeat = 1;
 
 	// set up the beat "holder"
 	setSize((int)WINDOW_WIDTH,(int)BEATSTAGE_HEIGHT);
@@ -19,6 +21,20 @@ BeatStage::BeatStage(spPianoBar pb)
 	// seed random generator
 	srand(time(NULL));
 
+	// set up beatscore stuff
+	bsp = new BeatscoreParser(std::string("beatscore/test.beatj"));
+	_BPM = bsp->getBPM();
+	_songlength = bsp->getLength();
+	_songname = bsp->getSongName();
+	if (!DEBUG_MODE) {
+		// interval = length of song / num total beats
+		_beatInterval = (float)_songlength/ ((float)_songlength / 60 * _BPM);
+		_subBeatInterval = _beatInterval / 4;
+	}
+	else {
+		_beatInterval = 3.0; 			// once every 3 seconds
+	}
+
 
 	// DEBUG WORK HERE
 	/*
@@ -29,31 +45,9 @@ BeatStage::BeatStage(spPianoBar pb)
 	*/
 }
 
-void BeatStage::_addBeat(spBeat beat)
+BeatStage::~BeatStage()
 {
-	if (!DEBUG_MODE) {
-	}
-	else {
-		// set the original position of the beat (randomly)
-		int random = rand() % NUM_PIANO_KEYS;     // random number between 0 and NUM_PIANO_KEYS-1, inclusive
-		float xpos = random * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
-		beat->setPosition(xpos,WINDOW_HEIGHT);
-		beat->beginFall(5);  	// 5 seconds for beat to hit pianobar
-
-		// set the note
-		switch (random) {
-			case 0: beat->setNote(KEY_0); break;
-			case 1: beat->setNote(KEY_1); break;
-			case 2: beat->setNote(KEY_2); break;
-			case 3: beat->setNote(KEY_3); break;
-			case 4: beat->setNote(KEY_4); break;
-			case 5: beat->setNote(KEY_5); break;
-			case 6: beat->setNote(KEY_6); break;
-		}
-	}
-
-	_beats.push_back(beat);
-	addChild(beat);
+	delete bsp;
 }
 
 void BeatStage::doUpdate(const UpdateState & us)
@@ -100,7 +94,19 @@ void BeatStage::doUpdate(const UpdateState & us)
 		}
 	}
 
+	// see if we need to add a beat
 	if (!DEBUG_MODE) {
+		// TODO: need to take into account that the game will wait 1 subbeat interval before dropping any beats
+		if (_timeSinceLastSubBeat >= 1000*_subBeatInterval)	{
+			_addBeat(new Beat(BEAT_RADIUS,KEYBOARD_BEAT));
+
+			// update counters
+			_timeSinceLastSubBeat = 0;
+			_currentSubBeat < 4 ? _currentSubBeat++ : _currentSubBeat = 1;
+			if (_currentSubBeat == 1) _currentBeat++;
+		}
+		else
+			_timeSinceLastSubBeat += us.dt;
 	}
 	else {
 		// debug mode, we add a random beat every _beatInterval seconds
@@ -111,7 +117,7 @@ void BeatStage::doUpdate(const UpdateState & us)
 			else
 				_addBeat(new Beat(BEAT_RADIUS,KEYBOARD_BEAT));
 
-			// reset counter
+			// update counter
 			_timeSinceLastBeat = 0;
 		} 
 		else
@@ -129,6 +135,61 @@ void BeatStage::doUpdate(const UpdateState & us)
 			_beatborders[i]->showBorder();
 		else
 			_beatborders[i]->hideBorder();
+	}
+}
+
+void BeatStage::_addBeat(spBeat beat)
+{
+	if (!DEBUG_MODE) {
+		char cbeat = bsp->getNoteAtBeat(_currentBeat,_currentSubBeat);
+		//log::messageln("getNoteAtBeat(%d,%d) = %c",_currentBeat,_currentSubBeat,cbeat);
+		if (cbeat != '\0') {
+			beat->setNote(cbeat);
+
+			// set the position
+			int x;
+			switch (cbeat) {
+				case KEY_0: x = 0; break;
+				case KEY_1: x = 1; break;
+				case KEY_2: x = 2; break;
+				case KEY_3: x = 3; break;
+				case KEY_4: x = 4; break;
+				case KEY_5: x = 5; break;
+				case KEY_6: x = 6; break;
+				default: 
+					log::messageln("_addBeat: Error -> unrecognized key");
+					exit(EXIT_FAILURE);
+			}
+			float xpos = x * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
+			beat->setPosition(xpos,WINDOW_HEIGHT);
+			beat->beginFall(5);  	// 5 seconds for beat to hit pianobar
+
+			// add beat in
+			_beats.push_back(beat);
+			addChild(beat);
+		}
+	}
+	else {
+		// set the original position of the beat (randomly)
+		int random = rand() % NUM_PIANO_KEYS;     // random number between 0 and NUM_PIANO_KEYS-1, inclusive
+		float xpos = random * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
+		beat->setPosition(xpos,WINDOW_HEIGHT);
+		beat->beginFall(5);  	// 5 seconds for beat to hit pianobar
+
+		// set the note
+		switch (random) {
+			case 0: beat->setNote(KEY_0); break;
+			case 1: beat->setNote(KEY_1); break;
+			case 2: beat->setNote(KEY_2); break;
+			case 3: beat->setNote(KEY_3); break;
+			case 4: beat->setNote(KEY_4); break;
+			case 5: beat->setNote(KEY_5); break;
+			case 6: beat->setNote(KEY_6); break;
+		}
+
+		// add beat in 
+		_beats.push_back(beat);
+		addChild(beat);
 	}
 }
 
