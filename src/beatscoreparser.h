@@ -11,6 +11,18 @@
 #include <stdio.h>
 #include "beatjam_constants.h"
 
+// this represents ONE concurrent beat in a subbeat
+typedef struct _subBeatNote_t {
+	char note;
+	int type;
+} subBeatNote;
+
+// represents concurrent notes in subbeat
+typedef struct parsedSubBeat_t {
+	std::vector<subBeatNote> notes;   
+} parsedSubBeat;
+
+
 class BeatscoreParser
 {
 	public:
@@ -19,11 +31,13 @@ class BeatscoreParser
 		 */
 		BeatscoreParser(std::string fname);
 
+		~BeatscoreParser();
+
 		/*
 		 * this function will return a KEY_ constant or NOKEY depending on if there is a note at this time
 		 * time is specified by a beat number (begins at 1) and a subbeat (1 <= subbeat <= 4)
 		 */
-		char getNoteAtBeat(int beat, int subbeat);
+		parsedSubBeat getNotesAtBeat(int beat, int subbeat);
 
 		/*
 		 * getters for beatscore data
@@ -47,13 +61,19 @@ class BeatscoreParser
 		 */
 		void _parseSingleBeat(std::ifstream * bsfile, const char * fline);  
 
+		/*
+		 * private helper to determine if a char is one of the KEY constants
+		 */
+		bool _isValidNote(char c);
+
 		// private data members
-		std::vector< char* > _beatscore;  	// main data structure
+		std::vector< parsedSubBeat* > _beatscore;  	// main data structure
 		std::string _fname;
 		int _BPM;
 		int _length;
 		std::string _song;
 		bool _inBeatSection;
+		int _line; 			// current line we're parsing
 };
 
 #endif

@@ -27,10 +27,15 @@ class BeatStage : public ColorRectSprite
 		virtual void doUpdate(const UpdateState & us);
 	private:
 		/*
-		 * adds a beat to a *randomized* starting point (on the bottom of the screen -> ie opposite to the pianobar
+		 * adds a beat to a starting point based on the beatscore(on the bottom of the screen -> ie opposite to the pianobar
+		 */
+		void _addScoreBeat();
+
+		/*
+		 * adds a random x-position beat, used in debug mode
 		 * beat must be initialized before passing it in
 		 */
-		void _addBeat(spBeat beat);
+		void _addRandomBeat(spBeat beat);
 
 		/*
 		 * this function will check to see if the user has the right keys chorded at the instant this is called

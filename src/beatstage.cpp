@@ -98,7 +98,7 @@ void BeatStage::doUpdate(const UpdateState & us)
 	if (!DEBUG_MODE) {
 		// TODO: need to take into account that the game will wait 1 subbeat interval before dropping any beats
 		if (_timeSinceLastSubBeat >= 1000*_subBeatInterval)	{
-			_addBeat(new Beat(BEAT_RADIUS,KEYBOARD_BEAT));
+			_addScoreBeat();
 
 			// update counters
 			_timeSinceLastSubBeat = 0;
@@ -113,9 +113,9 @@ void BeatStage::doUpdate(const UpdateState & us)
 		if (_timeSinceLastBeat >= 1000*_beatInterval) {
 			int random = rand() * 100; 	// random number between 0 and 99 inclusive
 			if (random <= 25) 
-				_addBeat(new Beat(BEAT_RADIUS,MOUSE_BEAT));
+				_addRandomBeat(new Beat(BEAT_RADIUS,MOUSE_BEAT));
 			else
-				_addBeat(new Beat(BEAT_RADIUS,KEYBOARD_BEAT));
+				_addRandomBeat(new Beat(BEAT_RADIUS,KEYBOARD_BEAT));
 
 			// update counter
 			_timeSinceLastBeat = 0;
@@ -138,17 +138,20 @@ void BeatStage::doUpdate(const UpdateState & us)
 	}
 }
 
-void BeatStage::_addBeat(spBeat beat)
+void BeatStage::_addScoreBeat()
 {
-	if (!DEBUG_MODE) {
-		char cbeat = bsp->getNoteAtBeat(_currentBeat,_currentSubBeat);
-		//log::messageln("getNoteAtBeat(%d,%d) = %c",_currentBeat,_currentSubBeat,cbeat);
-		if (cbeat != '\0') {
-			beat->setNote(cbeat);
+	parsedSubBeat cbeat = bsp->getNotesAtBeat(_currentBeat,_currentSubBeat);
+	if (cbeat.notes.size() > 0) {
+		for (int i = 0; i < cbeat.notes.size(); ++i) {
+			char note = cbeat.notes[i].note;
+			int type = cbeat.notes[i].type;
+
+			spBeat beat = new Beat(BEAT_RADIUS,type);
+			beat->setNote(note);
 
 			// set the position
 			int x;
-			switch (cbeat) {
+			switch (note) {
 				case KEY_0: x = 0; break;
 				case KEY_1: x = 1; break;
 				case KEY_2: x = 2; break;
@@ -157,7 +160,9 @@ void BeatStage::_addBeat(spBeat beat)
 				case KEY_5: x = 5; break;
 				case KEY_6: x = 6; break;
 				default: 
-					log::messageln("_addBeat: Error -> unrecognized key");
+					// if this executes, then something seriously went wrong
+					// this should have been prevented by BeatscoreParser::_isValidNote(..) validation
+					log::messageln("_addBeat: error -> unrecognized key, this should not have been possible!");
 					exit(EXIT_FAILURE);
 			}
 			float xpos = x * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
@@ -169,28 +174,30 @@ void BeatStage::_addBeat(spBeat beat)
 			addChild(beat);
 		}
 	}
-	else {
-		// set the original position of the beat (randomly)
-		int random = rand() % NUM_PIANO_KEYS;     // random number between 0 and NUM_PIANO_KEYS-1, inclusive
-		float xpos = random * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
-		beat->setPosition(xpos,WINDOW_HEIGHT);
-		beat->beginFall(5);  	// 5 seconds for beat to hit pianobar
+}
 
-		// set the note
-		switch (random) {
-			case 0: beat->setNote(KEY_0); break;
-			case 1: beat->setNote(KEY_1); break;
-			case 2: beat->setNote(KEY_2); break;
-			case 3: beat->setNote(KEY_3); break;
-			case 4: beat->setNote(KEY_4); break;
-			case 5: beat->setNote(KEY_5); break;
-			case 6: beat->setNote(KEY_6); break;
-		}
+void BeatStage::_addRandomBeat(spBeat beat)
+{
+	// set the original position of the beat (randomly)
+	int random = rand() % NUM_PIANO_KEYS;     // random number between 0 and NUM_PIANO_KEYS-1, inclusive
+	float xpos = random * (float)PIANOKEY_WIDTH + (float)PIANOKEY_WIDTH / 2;
+	beat->setPosition(xpos,WINDOW_HEIGHT);
+	beat->beginFall(5);  	// 5 seconds for beat to hit pianobar
 
-		// add beat in 
-		_beats.push_back(beat);
-		addChild(beat);
+	// set the note
+	switch (random) {
+		case 0: beat->setNote(KEY_0); break;
+		case 1: beat->setNote(KEY_1); break;
+		case 2: beat->setNote(KEY_2); break;
+		case 3: beat->setNote(KEY_3); break;
+		case 4: beat->setNote(KEY_4); break;
+		case 5: beat->setNote(KEY_5); break;
+		case 6: beat->setNote(KEY_6); break;
 	}
+
+	// add beat in 
+	_beats.push_back(beat);
+	addChild(beat);
 }
 
 bool BeatStage::_consumeBeat(std::vector<spBeat> beats)

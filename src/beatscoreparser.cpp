@@ -5,6 +5,7 @@ BeatscoreParser::BeatscoreParser(std::string fname)
 	// init stuff
 	_fname = fname;
 	_inBeatSection = false;
+	_line = 0;
 
 	// open the file up
 	std::ifstream bsfile(_fname.c_str());	
@@ -18,6 +19,9 @@ BeatscoreParser::BeatscoreParser(std::string fname)
 	// begin parsing
 	std::string line;
 	while (std::getline(bsfile,line)) {
+		// update line number we're parsing
+		_line++;
+
 		// get it in cstring form so we can better parse it
 		const char * ln = line.c_str();
 
@@ -53,24 +57,30 @@ void BeatscoreParser::_handleGameArgument(const char * a)
 	const char * e = strstr(a+1,GARG_BEGIN);
 	const char * f = strstr(a+1,GARG_END);
 	if (b) {
-		if (*(b+strlen(GARG_SONG)+1) == '\0')
-			fprintf(stderr,"Error -> mising #SONG game argument\n");
+		if (*(b+strlen(GARG_SONG)+1) == '\0') {
+			fprintf(stderr,"Error -> mising #SONG game argument on line %d\n",_line);
+			exit(EXIT_FAILURE);
+		}
 		else {
 			_song = std::string((b+strlen(GARG_SONG)+1));
 			std::cout << "Song is: " << _song << std::endl;
 		}
 	}
 	else if (c) {
-		if (*(c+strlen(GARG_LENGTH)+1) == '\0')
-			fprintf(stderr,"Error -> mising #LENGTH game argument\n");
+		if (*(c+strlen(GARG_LENGTH)+1) == '\0') {
+			fprintf(stderr,"Error -> mising #LENGTH game argument on line %d\n",_line);
+			exit(EXIT_FAILURE);
+		}
 		else {
 			_length = atoi((c+strlen(GARG_LENGTH)+1));
 			std::cout << "Length is: " << _length << std::endl;
 		}
 	}
 	else if (d) {
-		if (*(d+strlen(GARG_BPM)+1) == '\0')
-			fprintf(stderr,"Error -> mising #BPM game argument\n");
+		if (*(d+strlen(GARG_BPM)+1) == '\0') {
+			fprintf(stderr,"Error -> mising #BPM game argument on line %d\n",_line);
+			exit(EXIT_FAILURE);
+		}
 		else {
 			_BPM = atoi((d+strlen(GARG_BPM)+1));
 			std::cout << "BPM is: "<< _BPM << std::endl;
@@ -86,7 +96,7 @@ void BeatscoreParser::_handleGameArgument(const char * a)
 	}
 	else {
 		printf("error string: %s\n",a);
-		fprintf(stderr,"Error -> unrecognized game argument\n");
+		fprintf(stderr,"Error -> unrecognized game argument on line %d\n",_line);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -100,31 +110,83 @@ void BeatscoreParser::_parseSingleBeat(std::ifstream * bsfile, const char * flin
 	// sanity check
 	assert(beatnum >= 1);
 
-	char * subbeats = new char[4];
+	parsedSubBeat * subbeats = new parsedSubBeat[NUM_SUBBEATS];
 	std::string line;
 
 	for (int i = 0; i < NUM_SUBBEATS; ++i) {
+		// update line we're parsing
+		_line++;
+
+		// get the line and process it
 		std::getline(*bsfile,line);
 		const char * a = line.c_str();
 		const char * c = strchr(a,GSUBBEATTERMINATOR);
-		// TODO: add more safety here, disallow things like 'Z'
+
+		// verify that GSUBBEATTERMINATOR actually exists
+		if (!c) {
+			fprintf(stderr,"BeatscoreParser: error -> could not find \'%c\' symbol on line %d\n",GSUBBEATTERMINATOR,_line);
+			exit(EXIT_FAILURE);
+		}
+
+		// see if beatscore has any beats for this subbeat
 		if (*(c+1) == '\0' || *(c+1) == ' ') {
-			subbeats[i] = '\0';
+			// do nothing, the parsedSubBeat struct will just be empty
 		}
 		else {
-			subbeats[i] = *(c+1);
+			char * d = (char*)(c+1);    // cast into a non-const pointer of first char after ->
+			while (*d) {
+				// check if we have a mouse beat
+				if (*d == 'm') {
+					if (*(d+1)) {
+						d++;
+						if (_isValidNote(*d)) {
+							subBeatNote subn = {*d,MOUSE_BEAT};
+							subbeats[i].notes.push_back(subn);
+						}
+						else {
+							fprintf(stderr,"BeatscoreParser: error -> \'m\' designator found, but invalid note %c on line %d\n"
+									,*d,_line);
+							exit(EXIT_FAILURE);
+						}
+					}
+					else {
+						fprintf(stderr,"BeatscoreParser: error -> \'m\' designator found, but missing note on line %d\n",_line);
+						exit(EXIT_FAILURE);
+					}
+				}
+				// check if it's a regular keyboard beat
+				else if (_isValidNote(*d)) {
+					subBeatNote subn = {*d,KEYBOARD_BEAT};
+					subbeats[i].notes.push_back(subn);
+				}
+				// else it's unrecognized
+				else {
+					fprintf(stderr,"BeatscoreParser: error -> unrecognized note %c on line %d\n",*d,_line);
+					exit(EXIT_FAILURE);
+				}
+			// increment d pointer
+			d++;
+			}
 		}
 	}
-	
+
 	// now put the subbeats into the vector
-	// TODO: make sure to free this memory later
 	_beatscore.push_back(subbeats);
 
 	// sanity check
 	assert(_beatscore.size() == beatnum);
 }
 
-char BeatscoreParser::getNoteAtBeat(int beat, int subbeat)
+BeatscoreParser::~BeatscoreParser()
+{
+	// TODO: for some reason this is segfaulting, can't see why atm
+	// delete all heap structs
+	for (int i = 0; i < _beatscore.size(); ++i) {
+		delete _beatscore[i];
+	}
+}
+
+parsedSubBeat BeatscoreParser::getNotesAtBeat(int beat, int subbeat)
 {
 	if (beat > _beatscore.size() || beat < 0) {
 		fprintf(stderr,"Error -> requested beat is out of range");
@@ -135,6 +197,11 @@ char BeatscoreParser::getNoteAtBeat(int beat, int subbeat)
 		exit(EXIT_FAILURE);
 	}
 	return _beatscore[beat-1][subbeat-1];
+}
+
+bool BeatscoreParser::_isValidNote(char c)
+{
+	return (c == KEY_0 || c == KEY_1 || c == KEY_2 || c == KEY_3 || c == KEY_4 || c == KEY_5 || c == KEY_6);
 }
 
 int BeatscoreParser::getLength()
