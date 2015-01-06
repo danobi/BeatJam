@@ -182,7 +182,7 @@ BeatscoreParser::~BeatscoreParser()
 	// TODO: for some reason this is segfaulting, can't see why atm
 	// delete all heap structs
 	for (int i = 0; i < _beatscore.size(); ++i) {
-		delete _beatscore[i];
+		delete [] _beatscore[i];
 	}
 }
 

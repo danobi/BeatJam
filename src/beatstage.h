@@ -4,6 +4,9 @@
 #include <vector>
 #include <time.h>
 #include "oxygine-framework.h"
+//#include "SoundPlayer.h"
+//#include "SoundSystem.h"
+//#include "SoundInstance.h"
 #include "beatjam_constants.h"
 #include "pianobar.h"
 #include "beat.h"
